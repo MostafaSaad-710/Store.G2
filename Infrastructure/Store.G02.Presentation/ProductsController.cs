@@ -33,6 +33,8 @@ namespace Store.G02.Presentation
             return Ok(result); // 200
         }
 
+
+
         [HttpGet("{id}")] // Get: baseUrl/api/products/5
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ProductResponse))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ErrorDetails))]
@@ -42,7 +44,7 @@ namespace Store.G02.Presentation
         [Authorize]
         public async Task<ActionResult<ProductResponse>> GetProductById(int? id)
         {
-            if(id is null)return BadRequest();
+            if(id is null) return BadRequest();
 
             var result = await _serviceManager.ProductService.GetProductByIdAsync(id.Value);
 
@@ -50,6 +52,8 @@ namespace Store.G02.Presentation
 
             return Ok(result); // 200
         }
+
+
 
         [HttpGet("brands")] // Get: baseUrl/api/brands
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<BrandTypeResponse>))]
@@ -61,6 +65,8 @@ namespace Store.G02.Presentation
             if (result is null) return BadRequest(); // 400
             return Ok(result); // 200
         }
+
+
 
         [HttpGet("types")] // Get: baseUrl/api/types
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<BrandTypeResponse>))]
